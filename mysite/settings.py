@@ -130,3 +130,6 @@ STATIC_URL = '/static/'
 LOGIN_URL = 'floattle:login'
 LOGIN_REDIRECT_URL = 'floattle:top'
 
+# email送信周り
+# コンソールに表示
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

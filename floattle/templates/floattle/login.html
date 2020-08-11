@@ -1,5 +1,6 @@
 {% extends "floattle/base.html" %}
 {% block content %}
+<!-- ログイン部分 -->
 <form action="" method="POST">
     <div class="col-md-6 offset-md-3">
         <div class="card">
@@ -17,4 +18,11 @@
         </div>
     </div>
 </form>
+<!-- アカウント登録部分 -->
+<div class="card col-md-6">
+    <div class="card-body">
+        <a href="{% url 'floattle:user_create' %}" class="btn btn-success btn-lg btn-block">アカウント登録</a>
+    </div>
+</div>
+   
 {% endblock %}
