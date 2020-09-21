@@ -26,6 +26,12 @@
             <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}
                 <li>
+                    <a class="nav-item nav-link" href="{% url 'floattle:user_show' user.pk %}">ユーザー情報閲覧</a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="{% url 'floattle:user_update' user.pk %}">ユーザー情報更新</a>
+                </li>
+                <li>
                     <a class="nav-item nav-link" href="{% url 'floattle:logout' %}">ログアウト</a>
                 </li>
                 {% else %}

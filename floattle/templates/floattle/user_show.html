@@ -1,0 +1,15 @@
+{% extends "floattle/base.html" %}
+{% block content %}
+<table class="table">
+    <tbody>
+        <tr>
+            <th>ユーザー名（メール）</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <th>名前</th>
+            <td>{{ user.name }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
