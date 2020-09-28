@@ -9,7 +9,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
     <title>floattle</title>
 </head>
 
@@ -25,11 +24,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}
-                <li>
-                    <a class="nav-item nav-link" href="{% url 'floattle:user_show' user.pk %}">ユーザー情報閲覧</a>
-                </li>
-                <li>
-                    <a class="nav-item nav-link" href="{% url 'floattle:user_update' user.pk %}">ユーザー情報更新</a>
+                <li class="dropdown drop-hover">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">ユーザー情報</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'floattle:user_show' user.pk %}">ユーザー情報閲覧</a>
+                        <a class="dropdown-item" href="{% url 'floattle:user_update' user.pk %}">ユーザー情報更新</a>
+                        <a class="dropdown-item" href="{% url 'floattle:password_change' %}">パスワード変更</a>
+                    </div>
                 </li>
                 <li>
                     <a class="nav-item nav-link" href="{% url 'floattle:logout' %}">ログアウト</a>
@@ -62,5 +63,10 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
 </body>
+<style>
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+</style>
 
 </html>

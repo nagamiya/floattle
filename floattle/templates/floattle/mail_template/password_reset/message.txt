@@ -1,0 +1,11 @@
+{{ user.name }} 様 
+
+いつもご利用いただきありがとうございます。
+下記URLよりサイトにアクセスの上、パスワードの再設定を行ってください。
+
+再設定用URL
+{{ protocol}}://{{ domain }}{% url 'floattle:password_reset_confirm' uid token %}
+
+まだパスワードの再設定は完了しておりませんので、ご注意ください。
+
+floattle開発者　ながみや
