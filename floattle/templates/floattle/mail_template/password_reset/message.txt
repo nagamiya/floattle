@@ -4,7 +4,7 @@
 下記URLよりサイトにアクセスの上、メールアドレスの変更を行ってください。
 
 変更用URL
-{{ protocol}}://{{ domain }}{% url 'floattle:password_reset_confirm' token %}
+{{ protocol}}://{{ domain }}{% url 'floattle:password_reset_confirm' uid token %}
 
 まだパスワードの再設定は完了しておりませんので、ご注意ください。
 
