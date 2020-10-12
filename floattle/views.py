@@ -1,5 +1,7 @@
 from django.conf import settings
-from django.contrib.auth import get_user_model
+from django.contrib.auth import (
+    get_user_model, logout as auth_logout
+)
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView,
@@ -8,7 +10,9 @@ from django.contrib.auth.views import (
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.signing import BadSignature, SignatureExpired, loads, dumps
 from django.http import Http404, HttpResponseBadRequest
-from django.shortcuts import redirect, resolve_url
+from django.shortcuts import (
+    redirect, resolve_url, render
+)
 from django.template.loader import render_to_string
 from django.views import generic
 from django.urls import reverse_lazy
@@ -199,3 +203,12 @@ class PasswordResetConfirm(PasswordResetConfirmView):
 
 class PasswordResetComplete(PasswordResetCompleteView):
     template_name = 'floattle/password_reset_complete.html'
+
+class UserDestroy(LoginRequiredMixin, generic.View):
+   
+    def get(self, *args, **kwargs):
+        user = User.objects.get(email=self.request.user.email)
+        user.is_active = False
+        user.save()
+        auth_logout(self.request)
+        return render(self.request, 'floattle/user_destroy_complete.html')
