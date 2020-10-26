@@ -21,6 +21,12 @@ from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
     MyPasswordResetForm, MySetPasswordForm, EmailChangeForm
 )
+from .models import (
+    Post
+)
+import logging
+
+logger = logging.getLogger(__name__)
 
 # カスタムしたユーザをインポート
 User = get_user_model()
@@ -92,11 +98,17 @@ class UserCreateComplete(generic.TemplateView):
 
         
 # Create your views here.
-def index(request):
-    return HttpResponse('Hello, This is top page.')
 
 class Top(generic.TemplateView):
-    template_name = 'floattle/top.html'
+    def get(self, *args, **kwargs):
+        # そのうち最新の何件かだけ取得にする
+        latest_post_list = Post.objects.all()
+        context = {
+            'latest_post_list': latest_post_list,
+        }
+        return render(self.request, 'floattle/top.html', context)
+   
+  #  template_name = 'floattle/top.html'
 
 class Login(LoginView):
     form_class = LoginForm

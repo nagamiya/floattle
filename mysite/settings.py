@@ -134,3 +134,17 @@ LOGIN_REDIRECT_URL = 'floattle:top'
 # コンソールに表示するだけで実際の送信はしない（開発用）
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}

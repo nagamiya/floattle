@@ -4,7 +4,7 @@ from django.contrib.auth.forms import (
     PasswordChangeForm, PasswordResetForm, SetPasswordForm
 )
 from django.contrib.auth import get_user_model
-
+from .models import Post
 User = get_user_model()
 
 class LoginForm(AuthenticationForm):
@@ -73,3 +73,13 @@ class MySetPasswordForm(SetPasswordForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-controll'
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('user',)
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
