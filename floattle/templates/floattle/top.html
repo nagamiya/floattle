@@ -1,11 +1,11 @@
 {% extends "floattle/base.html" %}
 {% block content %}
 <p>ようこそ、{{ user.name }}さん</p>
-{% if latest_post_list %}
+{% if pickup_post_list %}
     <p>Messages</p>
     <ul>
-        {% for post in latest_post_list %}
-        <li>{{ post.text }}</li>
+        {% for post in pickup_post_list %}
+        <li>{{ post.id }}:{{ post.text }}</li>
         {% endfor %}
     </ul>
 

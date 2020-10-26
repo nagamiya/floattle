@@ -25,6 +25,7 @@ from .models import (
     Post
 )
 import logging
+import random
 
 logger = logging.getLogger(__name__)
 
@@ -101,14 +102,19 @@ class UserCreateComplete(generic.TemplateView):
 
 class Top(generic.TemplateView):
     def get(self, *args, **kwargs):
-        # そのうち最新の何件かだけ取得にする
-        latest_post_list = Post.objects.all()
+        # そのうちkeep数が上限に達していないpostの中からランダムなidのものだけを表示
+        post_list = Post.objects.all()
+        post_count = len(post_list)
+        post_id_list = [random.randint(0, post_count - 1) for i in range(3)]
+
+        pickup_post_list = [post_list[i] for i in post_id_list]
+
         context = {
-            'latest_post_list': latest_post_list,
+            'pickup_post_list': pickup_post_list,
         }
         return render(self.request, 'floattle/top.html', context)
    
-  #  template_name = 'floattle/top.html'
+  
 
 class Login(LoginView):
     form_class = LoginForm
