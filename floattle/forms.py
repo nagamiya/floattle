@@ -74,7 +74,25 @@ class MySetPasswordForm(SetPasswordForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-controll'
 
-class PostForm(forms.ModelForm):
+
+class PostForm(forms.Form):
+    CHOICES = (
+        ("0", "ボロボロの紙"),
+        ("1", "ふつうのメモ用紙"),
+        ("2", "上質な紙")
+    )
+
+    text = forms.CharField(
+        label='メッセージ',
+        max_length=200,
+        widget=forms.Textarea
+    )
+    shed_count = forms.ChoiceField(
+        label='用紙の種類',
+        choices=CHOICES,
+        widget=forms.Select
+    )
+
     class Meta:
         model = Post
         fields = ('user',)
@@ -83,3 +101,5 @@ class PostForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+
+   

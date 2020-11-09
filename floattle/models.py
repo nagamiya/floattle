@@ -82,8 +82,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+    # Metaはそのクラスが何を示しているのかわかりやすくする補足情報的な役割
     class Meta:
-        verbose_name = _('user')
+        verbose_name = _('利用者')
         verbose_name_plural = _('users')
 
 
@@ -108,3 +109,6 @@ class Post(models.Model):
     ''' 文字数によって紙のデザインが変わるようにそのうちしたいので定義しておいた '''
     def length(self):
         return len(self.text)
+
+    class Meta:
+        verbose_name = _('投稿内容（Message）')

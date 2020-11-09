@@ -19,7 +19,7 @@ from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
-    MyPasswordResetForm, MySetPasswordForm, EmailChangeForm
+    MyPasswordResetForm, MySetPasswordForm, EmailChangeForm, PostForm
 )
 from .models import (
     Post
@@ -101,19 +101,35 @@ class UserCreateComplete(generic.TemplateView):
 # Create your views here.
 
 class Top(generic.TemplateView):
-    def get(self, *args, **kwargs):
-        # そのうちkeep数が上限に達していないpostの中からランダムなidのものだけを表示
+    def preparation(self):
+        form_class = PostForm
+
         post_list = Post.objects.all()
         post_count = len(post_list)
         post_id_list = [random.randint(0, post_count - 1) for i in range(3)]
-
         pickup_post_list = [post_list[i] for i in post_id_list]
 
         context = {
             'pickup_post_list': pickup_post_list,
+            'form': form_class
         }
-        return render(self.request, 'floattle/top.html', context)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        context = self.preparation()
+        # そのうちkeep数が上限に達していないpostの中からランダムなidのものだけを表示
+        return render(request, 'floattle/top.html', context)
    
+    def post(self, request, *args, **kwargs):
+        context = self.preparation()
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+            return redirect('/top/')
+        return render(request, 'floattle/top.html', context)
+
+
+    
   
 
 class Login(LoginView):

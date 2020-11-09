@@ -6,11 +6,20 @@
     <ul>
         {% for post in pickup_post_list %}
         <li>{{ post.id }}:{{ post.text }}</li>
+            {% for k in post.keep.all %}
+            <li>keepuser:{{ k }}</li>
+            {% endfor %}
         {% endfor %}
     </ul>
 
 {% else %}
     <p>No posts are available.</p>
 {% endif %}
+
+<form action="" method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">送信</button>
+</form>
 
 {% endblock %}
