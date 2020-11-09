@@ -1,0 +1,14 @@
+{% extends "floattle/base.html" %}
+{% block content %}
+<p>Your past messages</p>
+{% if userself_post_list %}
+    {% for post in userself_post_list %}
+        <li>{{ post.text }}</li>
+    {% endfor %}
+{% else %}
+    <p>
+        Yout messages is not yet.<br>
+        Let's send a messages :)
+    </p>
+{% endif %}
+{% endblock %}

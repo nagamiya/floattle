@@ -132,7 +132,16 @@ class Top(generic.TemplateView):
         return render(request, 'floattle/top.html', context)
 
 
-    
+class MessagesShow(generic.TemplateView):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        post_list = Post.objects.all()
+        userself_post_list = [p for p in post_list if p.user == user]
+        context = {
+            'userself_post_list': userself_post_list
+        }
+        return render(request, 'floattle/messages_show.html', context)
+
   
 
 class Login(LoginView):
