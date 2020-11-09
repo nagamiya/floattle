@@ -21,6 +21,7 @@ from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
     MyPasswordResetForm, MySetPasswordForm, EmailChangeForm, PostForm
 )
+from . import forms
 from .models import (
     Post
 )
@@ -102,7 +103,7 @@ class UserCreateComplete(generic.TemplateView):
 
 class Top(generic.TemplateView):
     def preparation(self):
-        form_class = PostForm
+        form_class = PostForm()
 
         post_list = Post.objects.all()
         post_count = len(post_list)
@@ -122,9 +123,11 @@ class Top(generic.TemplateView):
    
     def post(self, request, *args, **kwargs):
         context = self.preparation()
-        form = PostForm(request.POST)
-
+        form = forms.PostForm(request.POST)
         if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            form.save()
             return redirect('/top/')
         return render(request, 'floattle/top.html', context)
 
