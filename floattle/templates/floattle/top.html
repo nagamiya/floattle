@@ -1,25 +1,32 @@
 {% extends "floattle/base.html" %}
 {% block content %}
-<p>ようこそ、{{ user.name }}さん</p>
-{% if pickup_post_list %}
-    <p>Messages</p>
-    <ul>
-        {% for post in pickup_post_list %}
-        <li>{{ post.id }}:{{ post.text }}</li>
-            {% for k in post.keep.all %}
-            <li>keepuser:{{ k }}</li>
+{% if user.is_authenticated %}
+    <p>ようこそ、{{ user.name }}さん</p>
+    {% if pickup_post_list %}
+        <p>Messages</p>
+        <ul>
+            {% for post in pickup_post_list %}
+            <li>{{ post.id }}:{{ post.text }}</li>
+            <!--
+                {% for k in post.keep.all %}
+                <li>keepuser:{{ k }}</li>
+                {% endfor %}
+            -->    
             {% endfor %}
-        {% endfor %}
-    </ul>
+        </ul>
 
+    {% else %}
+        <p>No posts are available.<br>
+        </p>
+    {% endif %}
+    <form action="" method="POST">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit">送信</button>
+    </form>
 {% else %}
-    <p>No posts are available.</p>
+    <p>ログインユーザーのみ見れるようになってます</p>
 {% endif %}
 
-<form action="" method="POST">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button type="submit">送信</button>
-</form>
 
 {% endblock %}

@@ -77,9 +77,9 @@ class MySetPasswordForm(SetPasswordForm):
 
 class PostForm(forms.ModelForm):
     CHOICES = (
-        ("0", "ボロボロの紙"),
-        ("1", "ふつうのメモ用紙"),
-        ("2", "上質な紙")
+        ("1", "ボロボロの紙"),
+        ("3", "ふつうのメモ用紙"),
+        ("5", "上質な紙")
     )
     
     text = forms.CharField(

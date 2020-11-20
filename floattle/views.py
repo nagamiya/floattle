@@ -27,6 +27,7 @@ from .models import (
 )
 import logging
 import random
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -127,6 +128,7 @@ class Top(generic.TemplateView):
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
+            post.date_published = datetime.now()
             form.save()
             return redirect('/top/')
         return render(request, 'floattle/top.html', context)
