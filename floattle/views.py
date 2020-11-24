@@ -103,12 +103,21 @@ class UserCreateComplete(generic.TemplateView):
 # Create your views here.
 
 class Top(generic.TemplateView):
+    def keep(request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        if request.method == 'POST':
+            post.keep.add()
+            post.save()
+
+        return redirect('board:top')
+
+    # getにcontext渡すための準備
     def preparation(self):
         form_class = PostForm()
 
         post_list = Post.objects.all()
         post_count = len(post_list)
-        post_id_list = [random.randint(0, post_count - 1) for i in range(3)]
+        post_id_list = [random.randint(0, post_count - 1) for i in range(1)]
         pickup_post_list = [post_list[i] for i in post_id_list]
 
         context = {
@@ -144,7 +153,11 @@ class MessagesShow(generic.TemplateView):
         }
         return render(request, 'floattle/messages_show.html', context)
 
-  
+# ここでkeep機能実装したい
+class Detail(generic.DetailView):
+    model = Post
+    template_name = 'floattle/detail.html'
+
 
 class Login(LoginView):
     form_class = LoginForm

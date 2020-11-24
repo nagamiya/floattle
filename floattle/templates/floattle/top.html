@@ -6,7 +6,7 @@
         <p>Messages</p>
         <ul>
             {% for post in pickup_post_list %}
-            <li>{{ post.id }}:{{ post.text }}</li>
+            <li><a href="{% url 'floattle:detail' post.pk %}">{{ post.id }}:{{ post.text }}</a></li>
             <!--
                 {% for k in post.keep.all %}
                 <li>keepuser:{{ k }}</li>
