@@ -11,7 +11,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.core.signing import BadSignature, SignatureExpired, loads, dumps
 from django.http import Http404, HttpResponseBadRequest
 from django.shortcuts import (
-    redirect, resolve_url, render
+    redirect, resolve_url, render, get_object_or_404
 )
 from django.template.loader import render_to_string
 from django.views import generic
@@ -103,13 +103,6 @@ class UserCreateComplete(generic.TemplateView):
 # Create your views here.
 
 class Top(generic.TemplateView):
-    def keep(request, pk):
-        post = get_object_or_404(Post, pk=pk)
-        if request.method == 'POST':
-            post.keep.add()
-            post.save()
-
-        return redirect('board:top')
 
     # getにcontext渡すための準備
     def preparation(self):
@@ -157,6 +150,33 @@ class MessagesShow(generic.TemplateView):
 class Detail(generic.DetailView):
     model = Post
     template_name = 'floattle/detail.html'
+
+    def get(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        keeped = False
+
+        if post.keep.filter(id=request.user.id).exists():
+            keeped = True
+            
+        context = {
+            'post': post,
+            'keeped': keeped
+        }
+        return render(request, 'floattle/detail.html', context)
+
+    def post(self, request, pk):
+        user = request.user
+        post = get_object_or_404(Post, pk=pk)
+
+        if post.keep.filter(id=request.user.id).exists():
+            post.keep.remove(request.user)
+            post.save()
+            keeped = True
+        else:
+            post.keep.add(user)
+            post.save()
+            keeped = False
+        return redirect('floattle:detail', post.pk)
 
 
 class Login(LoginView):

@@ -1,4 +1,28 @@
 {% extends "floattle/base.html" %}
 {% block content %}
 <p>post detail</p>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>メッセージ番号</th>
+            <td>{{ post.id }}</td>
+        </tr>
+        <tr>
+            <th>メッセージ</th>
+            <td>{{ post.text }}</td>
+        </tr>
+        <tr>
+            <th>キープ</th>
+            {% if keeped %}
+            <td>キープ済み</td>
+            {% else %}
+            <td>キープする</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+<form action="" method="POST">
+    {% csrf_token %}
+    <button type="submit" action="keep">keep</button>
+</form>
 {% endblock %}
