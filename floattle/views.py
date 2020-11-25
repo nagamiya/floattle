@@ -146,6 +146,15 @@ class MessagesShow(generic.TemplateView):
         }
         return render(request, 'floattle/messages_show.html', context)
 
+class KeepsShow(generic.TemplateView):
+    def get(self, request, *args, **kwargs):
+        keep_user = request.user
+        keep_list = Post.objects.filter(keep=keep_user)
+        context = {
+            'keep_list': keep_list
+        }
+        return render(request, 'floattle/keeps_show.html', context)
+
 # ここでkeep機能実装したい
 class Detail(generic.DetailView):
     model = Post
@@ -157,7 +166,7 @@ class Detail(generic.DetailView):
 
         if post.keep.filter(id=request.user.id).exists():
             keeped = True
-            
+
         context = {
             'post': post,
             'keeped': keeped

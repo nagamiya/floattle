@@ -1,0 +1,14 @@
+{% extends "floattle/base.html" %}
+{% block content %}
+<p>Your keep messages</p>
+{% if keep_list %}
+{% for keep in keep_list %}
+<li><a href="{% url 'floattle:detail' keep.pk %}">{{ keep.id }}{{ keep.text }}</a></li>
+{% endfor %}
+{% else %}
+<p>
+    Yout keeps is not yet.<br>
+    Let's keep a messages :)
+</p>
+{% endif %}
+{% endblock %}

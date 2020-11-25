@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.Top.as_view(), name='top'),
     path('top/', views.Top.as_view(), name='top'),
     path('messages_show/', views.MessagesShow.as_view(), name='messages_show'),
+    path('keeps_show/', views.KeepsShow.as_view(), name='keeps_show'),
     path('detail/<int:pk>/', views.Detail.as_view(), name='detail'),
     
     path('login/', views.Login.as_view(), name='login'),
