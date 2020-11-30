@@ -13,16 +13,21 @@
         </tr>
         <tr>
             <th>キープ</th>
-            {% if keeped %}
-            <td>キープ済み</td>
-            {% else %}
-            <td>キープする</td>
-            {% endif %}
+            <td>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button type="submit" action="keep">
+                {% if keeped %}
+                キープ済み
+                {% else %}
+                キープする
+                {% endif %}
+                </button>
+            </form>
+            </td>
+            
+            
         </tr>
     </tbody>
 </table>
-<form action="" method="POST">
-    {% csrf_token %}
-    <button type="submit" action="keep">keep</button>
-</form>
 {% endblock %}
