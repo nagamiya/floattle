@@ -99,8 +99,6 @@ class UserCreateComplete(generic.TemplateView):
 
         return HttpResponseBadRequest()
 
-        
-# Create your views here.
 
 class Top(generic.TemplateView):
 

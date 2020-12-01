@@ -6,7 +6,8 @@
         <p>Messages</p>
         <ul>
             {% for post in pickup_post_list %}
-            <li><a href="{% url 'floattle:detail' post.pk %}">{{ post.id }}:{{ post.text }}</a></li>
+            <li><a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a></li>
+            <li>{{ post.date_published }}</li>
             <!--
                 {% for k in post.keep.all %}
                 <li>keepuser:{{ k }}</li>

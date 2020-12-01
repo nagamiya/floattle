@@ -2,9 +2,11 @@
 {% block content %}
 <p>Your past messages</p>
 {% if userself_post_list %}
+    <ul>
     {% for post in userself_post_list %}
-        <li>{{ post.text }}</li>
+        <li><a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a></li>
     {% endfor %}
+    </ul>
 {% else %}
     <p>
         Yout messages is not yet.<br>

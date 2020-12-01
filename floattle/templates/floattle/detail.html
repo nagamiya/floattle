@@ -12,6 +12,10 @@
             <td>{{ post.text }}</td>
         </tr>
         <tr>
+            <th>書かれた日</th>
+            <td>{{ post.date_published }}</td>
+        </tr>
+        <tr>
             <th>キープ</th>
             <td>
             <form action="" method="POST">
@@ -24,9 +28,7 @@
                 {% endif %}
                 </button>
             </form>
-            </td>
-            
-            
+            </td> 
         </tr>
     </tbody>
 </table>
