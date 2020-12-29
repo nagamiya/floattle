@@ -1,4 +1,5 @@
 {% extends "floattle/base.html" %}
+{% load static %}
 {% block content %}
 {% if user.is_authenticated %}
     <p>ようこそ、{{ user.name }}さん</p>
