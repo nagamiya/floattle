@@ -4,27 +4,22 @@
 {% if user.is_authenticated %}
     <p>ようこそ、{{ user.name }}さん</p>
     {% if pickup_post_list %}
-        <p>Messages</p>
+        <p>漂着したメッセージ</p>
         <ul>
             {% for post in pickup_post_list %}
             <li><a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a></li>
-            <li>{{ post.date_published }}</li>
-            <!--
-                {% for k in post.keep.all %}
-                <li>keepuser:{{ k }}</li>
-                {% endfor %}
-            -->    
+            <li>{{ post.date_published }}</li>  
             {% endfor %}
         </ul>
 
     {% else %}
-        <p>No posts are available.<br>
+        <p>漂着物は届いていません。<br>
         </p>
     {% endif %}
     <form action="" method="POST">
         {{ form.as_p }}
         {% csrf_token %}
-        <button type="submit">送信</button>
+        <button type="submit" class="btn btn-primary">流す</button>
     </form>
 {% else %}
     <p>ログインユーザーのみ見れるようになってます</p>

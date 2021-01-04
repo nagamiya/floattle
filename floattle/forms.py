@@ -83,7 +83,7 @@ class PostForm(forms.ModelForm):
     )
     
     text = forms.CharField(
-        label='メッセージ',
+        label='流すメッセージ',
         max_length=200,
         widget=forms.Textarea
     )
