@@ -11,7 +11,7 @@
                 {{ field.errors }}
                 <hr>
                 {% endfor %}
-                <button type="submit" class="btn btn-success btn-lg btn-block">ログイン</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">ログイン</button>
                 <input type="hidden" name="next" value="{{ next }}" />
                 {% csrf_token %}
             </div>
@@ -21,8 +21,8 @@
 <!-- アカウント登録部分 -->
 <div class="card col-md-6">
     <div class="card-body">
-        <a href="{% url 'floattle:user_create' %}" class="btn btn-success btn-lg btn-block">アカウント登録</a>
-        <a href="{% url 'floattle:password_reset' %}" class="btn btn-success btn-lg btn-block">パスワードを忘れた方</a>
+        <a href="{% url 'floattle:user_create' %}" class="btn btn-primary btn-lg btn-block">アカウント登録</a>
+        <a href="{% url 'floattle:password_reset' %}" class="btn btn-primary btn-lg btn-block">パスワードを忘れた方</a>
     </div>
 </div>
    

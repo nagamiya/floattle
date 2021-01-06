@@ -15,51 +15,59 @@
 </head>
 
 <body>
-    <!-- ナビバー -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="{% url 'floattle:top' %}">floattle</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="wrapper">
+        <!-- ナビバー -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{% url 'floattle:top' %}">floattle</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                {% if user.is_authenticated %}
-                <li class="dropdown drop-hover">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">about user</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'floattle:user_show' user.pk %}">about user</a>
-                        <a class="dropdown-item" href="{% url 'floattle:user_update' user.pk %}">change name</a>
-                        <a class="dropdown-item" href="{% url 'floattle:email_change' %}">change mail address</a>
-                        <a class="dropdown-item" href="{% url 'floattle:password_change' %}">change password</a>
-                        <a class="dropdown-item" href="{% url 'floattle:user_destroy' %}">deactive account</a>
-                    </div>
-                </li>
-                <li class="dropdown drop-hover">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">massages</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'floattle:messages_show' %}">messages</a>
-                        <a class="dropdown-item" href="{% url 'floattle:keeps_show' %}">keeps</a>
-                    </div>
-                </li>
-                <li>
-                    <a class="nav-item nav-link" href="{% url 'floattle:logout' %}">ログアウト</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-item nav-link" href="{% url 'floattle:login' %}">
-                        ようこそ、ゲスト！ログインはこちら
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                    <li class="dropdown drop-hover">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">about user</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'floattle:user_show' user.pk %}">about user</a>
+                            <a class="dropdown-item" href="{% url 'floattle:user_update' user.pk %}">change name</a>
+                            <a class="dropdown-item" href="{% url 'floattle:email_change' %}">change mail address</a>
+                            <a class="dropdown-item" href="{% url 'floattle:password_change' %}">change password</a>
+                            <a class="dropdown-item" href="{% url 'floattle:user_destroy' %}">deactive account</a>
+                        </div>
+                    </li>
+                    <li class="dropdown drop-hover">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">massages</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'floattle:messages_show' %}">messages</a>
+                            <a class="dropdown-item" href="{% url 'floattle:keeps_show' %}">keeps</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="nav-item nav-link" href="{% url 'floattle:logout' %}">ログアウト</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="{% url 'floattle:login' %}">
+                            ようこそ、ゲスト！ログインはこちら
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <!-- メインコンテント -->
+        <div class="container mt-3">
+            {% block content %}{% endblock %}
         </div>
-    </nav>
+        <div class="negative-margin">
+        </div>
 
-    <!-- メインコンテント -->
-    <div class="container mt-3">
-        {% block content %}{% endblock %}
+        <footer>
+            <p>nagamiya</p>
+        </footer>
     </div>
     <!-- SVG -->
     <!--<svg version="1.1" xmlns="http://www.w3.org/2000/svg"><path id="wave" d="" /></svg> -->
@@ -81,9 +89,6 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
 </body>
-<footer>
-    <p>nagamiya</p>
-</footer>
 <style>
 .dropdown:hover>.dropdown-menu {
     display: block;

@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 {% if user.is_authenticated %}
-    <p>ようこそ、{{ user.name }}さん</p>
     {% if pickup_post_list %}
         <p>漂着したメッセージ</p>
         <ul>
