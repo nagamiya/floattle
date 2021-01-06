@@ -3,11 +3,17 @@
 {% block content %}
 {% if user.is_authenticated %}
     {% if pickup_post_list %}
-        <p>漂着したメッセージ</p>
-        <ul>
+        <div class="arrived-messages">
+            <p class="title">漂着したメッセージ</p>
             {% for post in pickup_post_list %}
-            <li><a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a></li>
-            <li>{{ post.date_published }}</li>  
+            <p>
+                <a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a><br>
+                {% if post.date_published %}
+                    {{ post.date_published }}
+                {% else %}
+                    日付不明
+                {% endif %}
+            </p>
             {% endfor %}
         </ul>
 
