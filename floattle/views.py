@@ -4,7 +4,8 @@ from django.contrib.auth import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import (
-    LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView,
+    LoginView, LogoutView,
+    PasswordChangeView, PasswordChangeDoneView,
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 )
 from django.contrib.sites.shortcuts import get_current_site
@@ -31,7 +32,7 @@ from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
-# カスタムしたユーザをインポート
+# カスタムユーザをインポート
 User = get_user_model()
 
 # Create User
@@ -153,7 +154,6 @@ class KeepsShow(generic.TemplateView):
         }
         return render(request, 'floattle/keeps_show.html', context)
 
-# ここでkeep機能実装したい
 class Detail(generic.DetailView):
     model = Post
     template_name = 'floattle/detail.html'
@@ -185,7 +185,6 @@ class Detail(generic.DetailView):
             keeped = False
         return redirect('floattle:detail', post.pk)
 
-
 class Login(LoginView):
     form_class = LoginForm
     template_name = 'floattle/login.html'
@@ -210,7 +209,6 @@ class UserUpdate(MyView, generic.UpdateView):
 
     def get_success_url(self):
         return resolve_url('floattle:user_show', pk=self.kwargs['pk'])
-
 
 class EmailChange(LoginRequiredMixin, generic.FormView):
     template_name = 'floattle/email_change_form.html'
@@ -237,7 +235,6 @@ class EmailChange(LoginRequiredMixin, generic.FormView):
         send_mail(subject, message, None, [new_email])
 
         return redirect('floattle:email_change_done')
-
 
 class EmailChangeDone(LoginRequiredMixin, generic.TemplateView):
     template_name = 'floattle/email_change_done.html'
@@ -292,11 +289,17 @@ class PasswordResetConfirm(PasswordResetConfirmView):
 class PasswordResetComplete(PasswordResetCompleteView):
     template_name = 'floattle/password_reset_complete.html'
 
-class UserDestroy(LoginRequiredMixin, generic.View):
-   
-    def get(self, *args, **kwargs):
+class UserDelete(generic.TemplateView):
+    template_name = 'floattle/user_delete.html'
+    success_url = reverse_lazy('floattle:user_delete_complete')
+    model = User
+
+    def post(self, request, *args, **kwargs):
         user = User.objects.get(email=self.request.user.email)
         user.is_active = False
         user.save()
         auth_logout(self.request)
-        return render(self.request, 'floattle/user_destroy_complete.html')
+        return render(self.request, 'floattle/user_delete_complete.html')
+
+class UserDeleteComplete(LoginRequiredMixin, generic.View):
+    template_name = 'floattle/user_delete_complete.html'

@@ -1,0 +1,12 @@
+{% extends "floattle/base.html" %}
+{% block content %}
+
+
+<p>ここは退会処理のページです。</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <P>本当に退会してもよろしいですか？</P>
+    <button type="submit" class="btn btn-primary btn-lg">退会</button>
+</form>
+{% endblock %}

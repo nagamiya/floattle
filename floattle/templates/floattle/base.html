@@ -34,7 +34,7 @@
                             <a class="dropdown-item" href="{% url 'floattle:user_update' user.pk %}">change name</a>
                             <a class="dropdown-item" href="{% url 'floattle:email_change' %}">change mail address</a>
                             <a class="dropdown-item" href="{% url 'floattle:password_change' %}">change password</a>
-                            <a class="dropdown-item" href="{% url 'floattle:user_destroy' %}">deactive account</a>
+                            <a class="dropdown-item" href="{% url 'floattle:user_delete' user.pk %}">deactive account</a>
                         </div>
                     </li>
                     <li class="dropdown drop-hover">
