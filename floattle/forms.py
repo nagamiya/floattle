@@ -87,15 +87,17 @@ class PostForm(forms.ModelForm):
         max_length=200,
         widget=forms.Textarea
     )
+    '''
     shed_count = forms.ChoiceField(
         label='用紙の種類',
         choices=CHOICES,
         widget=forms.Select
     )
+    '''
 
     class Meta:
         model = Post
-        fields = ('text', 'shed_count')
+        fields = ('text',)
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

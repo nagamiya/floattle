@@ -20,7 +20,7 @@ textarea.form-control { height: 30%; }
 .btn-primary:hover { background-color: white; border-color: white; color: #7ab6be; }
 
 /* なみなみ  */
-svg { width: 100%; height: 250px; position: absolute; bottom: 0; left: 0; z-index: -1; }
+svg { width: 100%; height: 55%; position: absolute; bottom: 0; left: 0; }
 
 footer { background-color: #7ab6be; width: 100%; height: 30px; position: absolute; bottom: 0; left: 0; margin-bottom: -30px; }
 
@@ -29,6 +29,6 @@ footer p { color: white; text-align: center; vertical-align: middle; }
 /*  間隔調節用の空要素 */
 .push { height: 50px; }
 
-@media screen and (min-height: 600px) { svg { width: 100%; height: 45%; position: absolute; bottom: 0; left: 0; } footer { height: 50px; } }
+@media screen and (min-height: 600px) { footer { height: 50px; } }
 
 /*# sourceMappingURL=_custom.css.map */
