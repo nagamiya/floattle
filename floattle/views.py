@@ -106,14 +106,19 @@ class Top(generic.TemplateView):
     # getにcontext渡すための準備
     def preparation(self):
         form_class = PostForm()
-
         post_list = Post.objects.all()
-        post_count = len(post_list)
-        post_id_list = [random.randint(0, post_count - 1) for i in range(1)]
-        pickup_post_list = [post_list[i] for i in post_id_list]
+        if post_list.exists():
+            post_count = len(post_list)
+            post_id_list = [random.randint(0, post_count - 1) for i in range(1)]
+            pickup_post_list = [post_list[i] for i in post_id_list]
+
+            context = {
+                'pickup_post_list': pickup_post_list,
+                'form': form_class
+            }
+            return context
 
         context = {
-            'pickup_post_list': pickup_post_list,
             'form': form_class
         }
         return context

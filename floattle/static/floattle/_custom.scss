@@ -6,12 +6,18 @@ $shadowSkin: #e2aa85;
 $highlightBlue: #9fecf4;
 $baseBlue: #91d1da;
 $shadowBlue: #7ab6be;
+$gray: #6c757d;
 
 /* 画像 */
 $backgroundImage: "images/background.jpg";
+$backgroundImage-mobile: "images/background-mini.jpg";
+$bottleImage: "images/bottle.svg";
+
 
 html body {
     height: 100%;
+    color: $gray;
+    font-size: 14px;
 }
 
 .wrapper {
@@ -31,8 +37,36 @@ html body {
         background: $shadowBlue;
     }
     .arrived-messages {
+        /*background-image: url($bottleImage);
+        height: 100px;
+        width: 400px;
+        left: 0;*/
+        position: relative;
+        padding: 1em 1.5em;
+        margin: 2em 0;
+        border: solid 3px $shadowBlue;/*線*/
+        border-radius: 8px;/*角の丸み*/
+
+        p {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
         .title {
-            // フォントサイズ調節あとでする
+            position: absolute;
+            display: inline-block;
+            top: -13px;
+            left: 10px;
+            padding: 0 10px;
+            background: #ffffff;
+            color: $shadowBlue;
+        }
+    }
+    
+
+    .container {
+        a{
+            color: $shadowBlue;
         }
     }
 }
@@ -40,6 +74,8 @@ html body {
 
 
 form {
+    position: relative;
+    z-index: 1;
     .form-control  {
         opacity: 0.7;
     }
@@ -55,10 +91,11 @@ textarea.form-control{
 .btn-primary {
     background-color: $shadowBlue;
     border-color: $shadowBlue;
+   
 }
 .btn-primary:hover {
     background-color: white;
-    border-color: white;
+    border-color: $baseBlue;
     color: $shadowBlue;
 }
 
@@ -93,9 +130,12 @@ footer {
 }
 
 @media screen and (min-height:600px) {
-
-
     footer {
         height: 50px;
+    }
+}
+@media screen and (max-width: 450px){
+    .wrapper {
+        background-image: url($backgroundImage-mobile);
     }
 }

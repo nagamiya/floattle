@@ -1,13 +1,23 @@
 @charset "UTF-8";
 /* 色 */
 /* 画像 */
-html body { height: 100%; }
+html body { height: 100%; color: #6c757d; font-size: 14px; }
 
 .wrapper { position: relative; min-height: 100%; background-size: cover; background-image: url("images/background.jpg"); background-color: rgba(255, 255, 255, 0.5); background-blend-mode: lighten; }
 
 .wrapper .navbar-light .navbar-brand { color: white; }
 
 .wrapper .navbar { background: #7ab6be; }
+
+.wrapper .arrived-messages { /*background-image: url($bottleImage); height: 100px; width: 400px; left: 0;*/ position: relative; padding: 1em 1.5em; margin: 2em 0; border: solid 3px #7ab6be; /*線*/ border-radius: 8px; /*角の丸み*/ }
+
+.wrapper .arrived-messages p { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+.wrapper .arrived-messages .title { position: absolute; display: inline-block; top: -13px; left: 10px; padding: 0 10px; background: #ffffff; color: #7ab6be; }
+
+.wrapper .container a { color: #7ab6be; }
+
+form { position: relative; z-index: 1; }
 
 form .form-control { opacity: 0.7; }
 
@@ -17,7 +27,7 @@ textarea.form-control { height: 30%; }
 
 .btn-primary { background-color: #7ab6be; border-color: #7ab6be; }
 
-.btn-primary:hover { background-color: white; border-color: white; color: #7ab6be; }
+.btn-primary:hover { background-color: white; border-color: #91d1da; color: #7ab6be; }
 
 /* なみなみ  */
 svg { width: 100%; height: 55%; position: absolute; bottom: 0; left: 0; }
@@ -30,5 +40,7 @@ footer p { color: white; text-align: center; vertical-align: middle; }
 .push { height: 50px; }
 
 @media screen and (min-height: 600px) { footer { height: 50px; } }
+
+@media screen and (max-width: 450px) { .wrapper { background-image: url("images/background-mini.jpg"); } }
 
 /*# sourceMappingURL=_custom.css.map */

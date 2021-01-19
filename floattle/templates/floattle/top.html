@@ -2,25 +2,24 @@
 {% load static %}
 {% block content %}
 {% if user.is_authenticated %}
+    <div class="arrived-messages">
     {% if pickup_post_list %}
-        <div class="arrived-messages">
-            <p class="title">漂着したメッセージ</p>
-            {% for post in pickup_post_list %}
-            <p>
-                <a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a><br>
-                {% if post.date_published %}
-                    {{ post.date_published }}
-                {% else %}
-                    日付不明
-                {% endif %}
-            </p>
-            {% endfor %}
-        </ul>
+        <span class="title">漂着したメッセージ</span>
+        {% for post in pickup_post_list %}
+        <p>
+            <a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a><br><br>
+            {% if post.date_published %}
+                {{ post.date_published }}
+            {% else %}
+                日付不明
+            {% endif %}
+        </p>
+        {% endfor %}
 
     {% else %}
-        <p>漂着物は届いていません。<br>
-        </p>
+        <p>漂着物は届いていません。<br></p>
     {% endif %}
+    </div>
     <form action="" method="POST">
         {{ form.as_p }}
         {% csrf_token %}
