@@ -62,15 +62,14 @@ html body {
             color: $shadowBlue;
         }
     }
-    
 
     .container {
-        a{
+        height: 100vh;
+        .message-link{
             color: $shadowBlue;
         }
     }
 }
-
 
 
 form {
@@ -87,6 +86,11 @@ textarea.form-control{
     height: 30%;
 }
 
+.card {
+    background-color: rgba($color: #ffffff, $alpha: 0.5);
+    background-blend-mode: lighten;
+}
+
 
 .btn-primary {
     background-color: $shadowBlue;
@@ -99,10 +103,21 @@ textarea.form-control{
     color: $shadowBlue;
 }
 
+.btn-green {
+    color: white;
+    border-color: $baseGreen;
+    background-color: $baseGreen;
+}
+
+.btn-green:hover {
+    border-color: $baseGreen;
+    color: $baseGreen;
+}
+
 /* なみなみ  */
 svg {
     width: 100%;
-    height: 55%;
+    height: 50%;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -116,7 +131,7 @@ svg {
     background-color: #e8ddbd; /*枠背景色*/
     box-shadow: inset 0 0 40px $baseSkin, 0 2px 2px $shadowSkin;
 
-    p {
+    .ellipsis-text {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

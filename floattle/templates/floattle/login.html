@@ -19,11 +19,18 @@
     </div>
 </form>
 <!-- アカウント登録部分 -->
-<div class="card col-md-6">
-    <div class="card-body">
-        <a href="{% url 'floattle:user_create' %}" class="btn btn-primary btn-lg btn-block">アカウント登録</a>
-        <a href="{% url 'floattle:password_reset' %}" class="btn btn-primary btn-lg btn-block">パスワードを忘れた方</a>
+<div class="col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-body">
+            <a href="{% url 'floattle:user_create' %}" class="btn btn-primary btn-lg btn-block btn-green">アカウント登録</a>
+            <a href="{% url 'floattle:password_reset' %}" class="btn btn-primary btn-lg btn-block btn-green">パスワードを忘れた方</a>
+        </div>
     </div>
+    
 </div>
    
+<!-- SVG -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path id="wave" d="" />
+</svg>
 {% endblock %}

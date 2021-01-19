@@ -146,21 +146,10 @@ SASS_TEMPLATE_EXTS = ['.html', '.haml']
 LOGIN_URL = 'floattle:login'
 LOGIN_REDIRECT_URL = 'floattle:top'
 
+# Logout後のリダイレクト先
+LOGOUT_REDIRECT_URL = 'floattle:login'
+
 # email送信周り
 # コンソールに表示するだけで実際の送信はしない（開発用）
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'WARNING',
-    },
-}

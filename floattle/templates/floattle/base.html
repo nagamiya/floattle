@@ -41,7 +41,7 @@
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Messages</button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{% url 'floattle:messages_show' %}">Your messages</a>
-                            <a class="dropdown-item" href="{% url 'floattle:keeps_show' %}">Your keep messages</a>
+                            <a class="dropdown-item" href="{% url 'floattle:keeps_show' %}">Your keep</a>
                         </div>
                     </li>
                     <li>
@@ -49,9 +49,7 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-item nav-link" href="{% url 'floattle:login' %}">
-                            ようこそ、ゲスト！ログインはこちら
-                        </a>
+                        <a class="nav-item nav-link" href="{% url 'floattle:login' %}">ログインはこちら</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -60,14 +58,11 @@
 
         <!-- メインコンテント -->
         <div class="container mt-3">
-            {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
         </div>
         <div class="negative-margin">
         </div>
-        <!-- SVG -->
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <path id="wave" d="" />
-        </svg>
+        
         <footer>
             <p>ふったー</p>
         </footer>

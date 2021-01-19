@@ -7,12 +7,7 @@
         <span class="title">漂着したメッセージ</span>
         {% for post in pickup_post_list %}
         <p>
-            <a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a><br><br>
-            {% if post.date_published %}
-                {{ post.date_published }}
-            {% else %}
-                日付不明
-            {% endif %}
+            <a href="{% url 'floattle:detail' post.pk %}" class="message-link">{{ post.text }}</a>
         </p>
         {% endfor %}
 
@@ -26,8 +21,15 @@
         <button type="submit" class="btn btn-primary">流す</button>
     </form>
 {% else %}
-    <p>ログインユーザーのみ見れるようになってます</p>
-{% endif %}
+    <p><a href="{% url 'floattle:login' %}" class="message-link">ログイン</a>ユーザーのみ見れるようになっています。</p>
+    <div class="">
 
+    </div>
+    
+{% endif %}
+<!-- SVG -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path id="wave" d="" />
+</svg>
 
 {% endblock %}

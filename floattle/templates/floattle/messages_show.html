@@ -4,7 +4,7 @@
 {% if userself_post_list %}
     {% for post in userself_post_list %}
         <div class="messages">
-            <p><a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a></p>
+            <p class="ellipsis-text"><a href="{% url 'floattle:detail' post.pk %}" class="message-link">{{ post.text }}</a></p>
         </div>
     {% endfor %}
     

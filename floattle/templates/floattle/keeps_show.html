@@ -4,7 +4,7 @@
 {% if keep_list %}
     {% for keep in keep_list %}
         <div class="messages">
-            <p><a href="{% url 'floattle:detail' keep.pk %}">{{ keep.text }}</a></p>
+            <p class="ellipsis-text"><a href="{% url 'floattle:detail' keep.pk %}" class="message-link">{{ keep.text }}</a></p>
         </div>
     {% endfor %}
 {% else %}

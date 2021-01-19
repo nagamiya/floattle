@@ -1,35 +1,24 @@
 {% extends "floattle/base.html" %}
 {% block content %}
-<p>post detail</p>
-<table class="table">
-    <tbody>
-        <tr>
-            <th>メッセージ番号</th>
-            <td>{{ post.id }}</td>
-        </tr>
-        <tr>
-            <th>メッセージ</th>
-            <td>{{ post.text }}</td>
-        </tr>
-        <tr>
-            <th>書かれた日</th>
-            <td>{{ post.date_published }}</td>
-        </tr>
-        <tr>
-            <th>キープ</th>
-            <td>
-            <form action="" method="POST">
-                {% csrf_token %}
-                <button type="submit" action="keep">
-                {% if keeped %}
-                キープ済み
-                {% else %}
-                キープする
-                {% endif %}
-                </button>
-            </form>
-            </td> 
-        </tr>
-    </tbody>
-</table>
+<p>messages detail</p>
+<div class="messages">
+    <p>
+        <a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a><br><br>
+        {% if post.date_published %}
+        {{ post.date_published }}
+        {% else %}
+        日付不明
+        {% endif %}
+    </p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" action="keep" class="btn-primary">
+            {% if keeped %}
+            キープを取り消す
+            {% else %}
+            キープする
+            {% endif %}
+        </button>
+    </form>
+</div>
 {% endblock %}
