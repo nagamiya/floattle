@@ -2,9 +2,11 @@
 {% block content %}
 <p>Your keep messages</p>
 {% if keep_list %}
-{% for keep in keep_list %}
-<li><a href="{% url 'floattle:detail' keep.pk %}">{{ keep.id }}{{ keep.text }}</a></li>
-{% endfor %}
+    {% for keep in keep_list %}
+        <div class="messages">
+            <p><a href="{% url 'floattle:detail' keep.pk %}">{{ keep.text }}</a></p>
+        </div>
+    {% endfor %}
 {% else %}
 <p>
     あなたはまだ漂着したメッセージをキープしていません。<br>

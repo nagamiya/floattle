@@ -1,12 +1,13 @@
 {% extends "floattle/base.html" %}
 {% block content %}
-<p>Your past messages</p>
+<p>Your messages</p>
 {% if userself_post_list %}
-    <ul>
     {% for post in userself_post_list %}
-        <li><a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a></li>
+        <div class="messages">
+            <p><a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a></p>
+        </div>
     {% endfor %}
-    </ul>
+    
 {% else %}
     <p>
         あなたはまだメッセージを流していません。<br>
