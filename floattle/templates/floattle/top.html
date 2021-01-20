@@ -22,9 +22,7 @@
     </form>
 {% else %}
     <p><a href="{% url 'floattle:login' %}" class="message-link">ログイン</a>ユーザーのみ見れるようになっています。</p>
-    <div class="">
-
-    </div>
+    {% include 'floattle/introduce.html' %}
     
 {% endif %}
 <!-- SVG -->
