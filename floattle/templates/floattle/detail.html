@@ -1,9 +1,9 @@
 {% extends "floattle/base.html" %}
 {% block content %}
-<p>messages detail</p>
+<p>message detail</p>
 <div class="messages">
     <p>
-        <a href="{% url 'floattle:detail' post.pk %}">{{ post.text }}</a><br><br>
+        <a href="{% url 'floattle:detail' post.pk %}" class="message-link">{{ post.text }}</a><br><br>
         {% if post.date_published %}
         {{ post.date_published }}
         {% else %}

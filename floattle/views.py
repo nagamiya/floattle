@@ -140,7 +140,7 @@ class Top(generic.TemplateView):
         return render(request, 'floattle/top.html', context)
 
 
-class MessagesShow(generic.TemplateView):
+class MessagesShow(LoginRequiredMixin, generic.TemplateView):
     def get(self, request, *args, **kwargs):
         user = request.user
         post_list = Post.objects.all()
@@ -150,7 +150,8 @@ class MessagesShow(generic.TemplateView):
         }
         return render(request, 'floattle/messages_show.html', context)
 
-class KeepsShow(generic.TemplateView):
+
+class KeepsShow(LoginRequiredMixin, generic.TemplateView):
     def get(self, request, *args, **kwargs):
         keep_user = request.user
         keep_list = Post.objects.filter(keep=keep_user)
@@ -197,6 +198,7 @@ class Login(LoginView):
 class Logout(LogoutView):
     template_name = 'floattle/top.html'
 
+# UserPassesTestMixinを継承して、ログインユーザ本人のみアクセスできるように
 class MyView(UserPassesTestMixin):
     raise_exception = True
     def test_func(self):
