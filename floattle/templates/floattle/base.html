@@ -30,9 +30,9 @@
                     <li class="dropdown drop-hover">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Your Account</button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'floattle:user_show' user.pk %}">Account information</a>
-                            <a class="dropdown-item" href="{% url 'floattle:user_update' user.pk %}">Change your name</a>
-                            <a class="dropdown-item" href="{% url 'floattle:email_change' %}">Change your email-address</a>
+                            <!--- <a class="dropdown-item" href="% url 'floattle:user_show' user.pk %">Account information</a>-->
+                            <a class="dropdown-item" href="{% url 'floattle:user_update' user.pk %}">Change your email</a>
+                            <!--- <a class="dropdown-item" href="% url 'floattle:email_change' %">Change your email-address</a>-->
                             <a class="dropdown-item" href="{% url 'floattle:password_change' %}">Change your password</a>
                             <a class="dropdown-item" href="{% url 'floattle:user_delete' user.pk %}">Deactive your account</a>
                         </div>

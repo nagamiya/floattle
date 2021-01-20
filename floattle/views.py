@@ -20,7 +20,7 @@ from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
-    MyPasswordResetForm, MySetPasswordForm, EmailChangeForm, PostForm
+    MyPasswordResetForm, MySetPasswordForm, PostForm, #EmailChangeForm
 )
 from . import forms
 from .models import (
@@ -205,21 +205,14 @@ class MyView(UserPassesTestMixin):
         user = self.request.user
         return user.pk == self.kwargs['pk'] or user.is_superuser
 
-class UserShow(MyView, generic.DetailView):
-    model = User
-    template_name = 'floattle/user_show.html'
 
 class UserUpdate(MyView, generic.UpdateView):
     model = User
     form_class = UserUpdateForm
-    template_name = 'floattle/user_form.html'
+    template_name = 'floattle/user_update.html'
 
     def get_success_url(self):
-        return resolve_url('floattle:user_show', pk=self.kwargs['pk'])
-
-class EmailChange(LoginRequiredMixin, generic.FormView):
-    template_name = 'floattle/email_change_form.html'
-    form_class = EmailChangeForm
+        return resolve_url('floattle:user_update', pk=self.kwargs['pk'])
 
     def form_valid(self, form):
         user = self.request.user
@@ -243,6 +236,47 @@ class EmailChange(LoginRequiredMixin, generic.FormView):
 
         return redirect('floattle:email_change_done')
 
+
+'''
+class UserShow(MyView, generic.DetailView):
+    model = User
+    form_class = UserUpdateForm
+    template_name = 'floattle/user_show.html'
+
+    def get_success_url(self):
+        return resolve_url('floattle:user_show', pk=self.kwargs['pk'])
+
+
+
+
+class EmailChange(LoginRequiredMixin, generic.FormView):
+    template_name = 'floattle/email_change_form.html'
+    form_class = EmailChangeForm()
+
+
+    def form_valid(self, form):
+        user = self.request.user
+        new_email = form.cleaned_data['email']
+
+        # URLの送付
+        current_site = get_current_site(self.request)
+        domain = current_site.domain
+        context = {
+            'protocol': 'https' if self.request.is_secure() else 'http',
+            'domain': domain,
+            'token': dumps(new_email),
+            'user': user,
+        }
+
+        subject = render_to_string(
+            'floattle/mail_template/email_change/subject.txt', context)
+        message = render_to_string(
+            'floattle/mail_template/email_change/message.txt', context)
+        send_mail(subject, message, None, [new_email])
+
+        return redirect('floattle:email_change_done')
+
+'''
 class EmailChangeDone(LoginRequiredMixin, generic.TemplateView):
     template_name = 'floattle/email_change_done.html'
 

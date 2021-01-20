@@ -18,6 +18,7 @@ html body {
     height: 100%;
     color: $gray;
     font-size: 14px;
+    
 }
 
 .wrapper {
@@ -27,6 +28,7 @@ html body {
     background-image: url($backgroundImage);
     background-color: rgba($color: #ffffff, $alpha: 0.5);
     background-blend-mode: lighten;
+    
 
     .navbar-light {
         .navbar-brand {

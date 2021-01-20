@@ -17,12 +17,12 @@ urlpatterns = [
     path('user_create/', views.UserCreate.as_view(), name='user_create'),
     path('user_create/done', views.UserCreateDone.as_view(), name='user_create_done'),
     path('user_create/complete/<token>', views.UserCreateComplete.as_view(), name='user_create_complete'),
-    path('user_show/<int:pk>/', views.UserShow.as_view(), name='user_show'),
+    #path('user_show/<int:pk>/', views.UserShow.as_view(), name='user_show'),
     path('user_update/<int:pk>/', views.UserUpdate.as_view(), name='user_update'),
     path('user_delete/<int:pk>/', views.UserDelete.as_view(), name='user_delete'),
     path('user_delete_comlete/', views.UserDeleteComplete.as_view(), name='user_delete_complete'),
 
-    path('email/change/', views.EmailChange.as_view(), name='email_change'),
+    #path('email/change/', views.EmailChange.as_view(), name='email_change'),
     path('email/change/done/', views.EmailChangeDone.as_view(), name='email_change_done'),
     path('email/change/complete/<str:token>/', views.EmailChangeComplete.as_view(), name='email_change_complete'),
 
