@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'floattle_database',
+        'NAME': 'floattle_DB',
         'USER': 'root',
         'PASSWORD': '',
     }
