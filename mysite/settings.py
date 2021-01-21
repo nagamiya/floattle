@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+import django_heroku
 from socket import gethostname
 import dj_database_url
 import os
@@ -225,3 +225,6 @@ else:
         'default': dj_database_url.config()
     }
     ALLOWED_HOSTS = ['*']
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
