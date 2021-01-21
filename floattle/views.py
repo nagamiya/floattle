@@ -26,11 +26,11 @@ from . import forms
 from .models import (
     Post
 )
-import logging
 import random
 from datetime import datetime
+from django.core.mail import send_mail
+import os
 
-logger = logging.getLogger(__name__)
 
 # カスタムユーザをインポート
 User = get_user_model()
@@ -58,14 +58,29 @@ class UserCreate(generic.CreateView):
         }
 
         subject = render_to_string('floattle/mail_template/create/subject.txt', context)
-        message = render_to_string('floattle/mail_template/create/message.txt', context)
+        content = render_to_string('floattle/mail_template/create/message.txt', context)
+        from_email = 'floattleDevelopper@gmail.com'
+        to_email = user.email
 
-        user.email_user(subject, message)
+        # ここからsendgrid
+        #sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+        #mail = Mail(from_email, to_email, subject, content)
+        #message = sendgrid.Mail()
+        #response = sg.client.mail.send.post(request_body=mail.get())
+        send_mail(
+            subject,
+            content,
+            from_email,
+            [to_email],
+            fail_silently=False,
+        )
+        # ここまで
         return redirect('floattle:user_create_done')
 
 # 仮登録したら
 class UserCreateDone(generic.TemplateView):
     template_name = 'floattle/user_create_done.html'
+
 
 # メールのURLにアクセスしてもらって本登録する（is_Active = Trueにする）
 class UserCreateComplete(generic.TemplateView):
@@ -228,55 +243,28 @@ class UserUpdate(MyView, generic.UpdateView):
             'user': user,
         }
 
-        subject = render_to_string(
-            'floattle/mail_template/email_change/subject.txt', context)
-        message = render_to_string(
-            'floattle/mail_template/email_change/message.txt', context)
-        send_mail(subject, message, None, [new_email])
+        subject = render_to_string('floattle/mail_template/email_change/subject.txt', context)
+        content = render_to_string('floattle/mail_template/email_change/message.txt', context)
+        from_email = 'floattleDevelopper@gmail.com'
+        to_email = new_email
+
+        # ここからsendgrid
+        #sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+        #mail = Mail(from_email, to_email, subject, content)
+        #message = sendgrid.Mail()
+        #response = sg.client.mail.send.post(request_body=mail.get())
+
+        send_mail(
+            subject,
+            content,
+            from_email,
+            [to_email],
+            fail_silently=False,
+        )
+        # ここまで
 
         return redirect('floattle:email_change_done')
 
-
-'''
-class UserShow(MyView, generic.DetailView):
-    model = User
-    form_class = UserUpdateForm
-    template_name = 'floattle/user_show.html'
-
-    def get_success_url(self):
-        return resolve_url('floattle:user_show', pk=self.kwargs['pk'])
-
-
-
-
-class EmailChange(LoginRequiredMixin, generic.FormView):
-    template_name = 'floattle/email_change_form.html'
-    form_class = EmailChangeForm()
-
-
-    def form_valid(self, form):
-        user = self.request.user
-        new_email = form.cleaned_data['email']
-
-        # URLの送付
-        current_site = get_current_site(self.request)
-        domain = current_site.domain
-        context = {
-            'protocol': 'https' if self.request.is_secure() else 'http',
-            'domain': domain,
-            'token': dumps(new_email),
-            'user': user,
-        }
-
-        subject = render_to_string(
-            'floattle/mail_template/email_change/subject.txt', context)
-        message = render_to_string(
-            'floattle/mail_template/email_change/message.txt', context)
-        send_mail(subject, message, None, [new_email])
-
-        return redirect('floattle:email_change_done')
-
-'''
 class EmailChangeDone(LoginRequiredMixin, generic.TemplateView):
     template_name = 'floattle/email_change_done.html'
 

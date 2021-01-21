@@ -1,7 +1,7 @@
-{{ user.name }} 様 
+{{ user.email }} 様 
 
 いつもご利用いただきありがとうございます。
-下記URLよりサイトにアクセスの上、メールアドレスの変更を行ってください。
+下記URLよりサイトにアクセスの上、パスワードの変更を行ってください。
 
 変更用URL
 {{ protocol}}://{{ domain }}{% url 'floattle:password_reset_confirm' uid token %}
