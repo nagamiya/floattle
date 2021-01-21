@@ -1,1 +1,1 @@
-web: gunicorn floattle.mysite.wsgi
+web: gunicorn mysite.wsgi
