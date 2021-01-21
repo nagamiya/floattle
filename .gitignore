@@ -137,3 +137,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 sendgrid.env
+
+# デプロイ用追記
+staticfiles
+local_settings.py
+config/local_settings.py
