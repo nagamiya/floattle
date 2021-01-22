@@ -21,7 +21,6 @@
         <button type="submit" class="btn btn-primary">流す</button>
     </form>
 {% else %}
-    <p><a href="{% url 'floattle:login' %}" class="message-link">ログイン</a>ユーザーのみ見れるようになっています。</p>
     {% include 'floattle/introduce.html' %}
     
 {% endif %}
