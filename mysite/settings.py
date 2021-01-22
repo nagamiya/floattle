@@ -196,7 +196,7 @@ if "nagamiya" in hostname:
             "PORT": "3306",
         }
     }
-#=====...ここまでは、使用しているデータベースに置き換えてください。=====
+
     ALLOWED_HOSTS = []
 else:
     # 本番環境

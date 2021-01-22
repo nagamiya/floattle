@@ -91,6 +91,7 @@ textarea.form-control{
 .card {
     background-color: rgba($color: #ffffff, $alpha: 0.5);
     background-blend-mode: lighten;
+    z-index: 1;
 }
 
 
