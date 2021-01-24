@@ -72,12 +72,6 @@ html body {
         }
 
     }
-    .intro-box {
-            background-color: rgba(255, 255, 255, 0.4);
-            border: solid 3px #91d1da;
-            border-radius: 8px;
-            z-index: 1;
-        }
 
 }
 
@@ -162,6 +156,13 @@ svg {
     transform: rotate( -3deg ); /*テープ角度*/
 }
 
+.intro-box {
+            background-color: rgba(255, 255, 255, 0.4);
+            border: solid 3px #91d1da;
+            border-radius: 8px;
+            z-index: 1;
+}
+
 
 footer {
     background-color: $shadowBlue;
@@ -174,8 +175,13 @@ footer {
     p {
         color: white;
         text-align: center;
-        vertical-align: middle;
+        a {
+            color: white;
+            vertical-align: middle;
+        }
+        
     }
+    
 }
 
 /*  間隔調節用の空要素 */
