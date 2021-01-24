@@ -79,7 +79,7 @@ class PostForm(forms.ModelForm):
     )
     
     shed_count = forms.ChoiceField(
-        label='用紙の種類',
+        label='用紙の種類（そのうちリリースされる機能です）',
         choices=CHOICES,
         widget=forms.Select
     )
